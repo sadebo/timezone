@@ -54,6 +54,7 @@ try:
     time_in_military_hrs_mins = datetime.datetime.strftime(formatted_date, "%I:%M")
     #Get the number of Seconds
     time_in_sec_total = get_sec(time_in_digital)
+    time_comma = "{:,}".format(time_in_sec_total)
     #Calculate the # of seconds left 86400 is a constant
     remain_time_sec = round((1 - (time_in_sec_total/86400)) *  100,2)
 
@@ -70,10 +71,10 @@ try:
     #print(time_in_sec_total)
     #print(remain_time_sec)
     #print (current_time)
-
+    #print (time_comma)
     print (f'{current_time}.There are {days_end_month} left in the month')
     print (f'{time_in_digital_hrs_mins} or {time_in_military_hrs_mins} hours')
-    print (f'{time_in_sec_total} since midnight')
+    print (f'{time_comma} seconds since midnight')
     print (f'{remain_time_sec}% of the USday remains')
     #print (datetime.datetime.strftime(formatted_date, "%A, %b %d, %Y"))
 except:
