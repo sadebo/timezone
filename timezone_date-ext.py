@@ -43,6 +43,27 @@ def get_time_from_NTPClient():
         print ("Issue with Time Sync!")
         return "Issue wth Time Sync"
 
+
+def convert24(str1): 
+      
+    # Checking if last two elements of time 
+    # is AM and first two elements are 12 
+    if str1[-2:] == "AM" and str1[:2] == "12": 
+        return "00" + str1[2:-2] 
+          
+    # remove the AM     
+    elif str1[-2:] == "AM": 
+        return str1[:-2] 
+      
+    # Checking if last two elements of time 
+    # is PM and first two elements are 12    
+    elif str1[-2:] == "PM" and str1[:2] == "12": 
+        return str1[:-2] 
+          
+    else: 
+        # add 12 to hours and remove PM 
+        return (str(int(str1[:2]) + 12) + str1[2:6]).replace(':','')
+
 #Define all variables that will be included in the print statements
 #Get the current time
 try:
@@ -50,8 +71,8 @@ try:
     #Format to get Hours, Mins and Seconds
     time_in_digital = datetime.datetime.strftime(formatted_date, "%H:%M:%S")
     #Format to get Hours and Seconds
-    time_in_digital_hrs_mins = datetime.datetime.strftime(formatted_date, "%H:%M %p")
-    time_in_military_hrs_mins = datetime.datetime.strftime(formatted_date, "%I:%M")
+    time_in_digital_hrs_mins = datetime.datetime.strftime(formatted_date, "%I:%M %p")
+    time_in_military_hrs_mins = convert24(time_in_digital_hrs_mins)
     #Get the number of Seconds
     time_in_sec_total = get_sec(time_in_digital)
     time_comma = "{:,}".format(time_in_sec_total)
@@ -64,7 +85,7 @@ try:
     days_end_month = days_in_current_month - int(datetime.datetime.strftime(formatted_date, "%d"))
     current_time = datetime.datetime.strftime(formatted_date, "%A, %b %d, %Y")
 
-
+    #print(convert24(time_in_digital_hrs_mins))
 
     #print (days_end_month)
     #print(current_time)
@@ -73,9 +94,9 @@ try:
     #print (current_time)
     #print (time_comma)
     print (f'{current_time}.There are {days_end_month} left in the month')
-    print (f'{time_in_digital_hrs_mins} or {time_in_military_hrs_mins} hours')
+    print (f'{time_in_digital_hrs_mins} or {time_in_military_hrs_mins}hours')
     print (f'{time_comma} seconds since midnight')
-    print (f'{remain_time_sec}% of the USday remains')
+    print (f'{remain_time_sec}% of the day remains')
     #print (datetime.datetime.strftime(formatted_date, "%A, %b %d, %Y"))
 except:
     print ("Something is wrong with the Code. Please contact Sanu Adebo!!!")
