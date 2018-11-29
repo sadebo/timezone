@@ -55,7 +55,7 @@ try:
     #Get the number of Seconds
     time_in_sec_total = get_sec(time_in_digital)
     #Calculate the # of seconds left 86400 is a constant
-    remain_time_sec = (1 - (time_in_sec_total/86400)) *  100
+    remain_time_sec = round((1 - (time_in_sec_total/86400)) *  100,2)
 
 
     today = datetime.date.today()
