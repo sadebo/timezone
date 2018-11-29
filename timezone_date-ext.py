@@ -7,7 +7,8 @@ import time
 import calendar
 import sys
 
-user_tz = input("Enter the time zone offset (example is US/Eastern): ")
+
+user_tz = input("Enter the TimeZone, the default is (US/Eastern) if you press the Enter key: ") or "US/Eastern"
 try:
     LOCALTIMEZONE = pytz.timezone(user_tz) # time zone name from Olson database
 except:
