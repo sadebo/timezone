@@ -14,6 +14,9 @@ slave_retry_interval = "15m"
 slave_expiration_time = "1w"
 nxdomain_cache_time = "1h"
 record_ttl = "3600s"
+#print Bold
+start = "\033[1m"
+end = "\033[0m"
 
 #Function to define ipadresses, subnet,wildcard,broadcast
 def ip_calc(my_ipaddress):
@@ -53,14 +56,14 @@ def ip_calc(my_ipaddress):
     wildcard = '.'.join(wildcard)
 
     #Print the result of function 
-    print(f'The IP address and the subnet mask is  {ip.with_netmask}')
-    print(f'This subnet {subnet} when converted to wildcard is: {wildcard}')
-    print(f'The number of host bits is: {ip.num_addresses -2}')
-    print(f'The Network address class is {my_class}')
-    print(f'The First IP assignable for a host is {ip.network_address +1}and in binary format it is {bin(int(ip.network_address +1))} and in hexadecimal {hex(int(ip.network_address +1))}') 
-    print(f'The last IP assignable to a host is {ip.broadcast_address -1} and in binary it is {bin(int(ip.broadcast_address -1))} and in hexadecimal {hex(int(ip.broadcast_address -1))}')
-    print(f'The network address is {ip.network_address} and in binary format it is {bin(int(ip.broadcast_address -1))} and in hexadecimal{hex(int(ip.network_address))}')
-    print(f'The Broadcast address is {ip.broadcast_address} and in binary format it is {bin(int(ip.broadcast_address))} and in hexadecimal {hex(int(ip.broadcast_address))}') 
+    print(f'The IP address and the subnet mask is  {start}{ip.with_netmask}{end}')
+    print(f'This subnet {start}{subnet}{end} when converted to wildcard is: {start}{wildcard}{end}')
+    print(f'The number of host bits is: {start}{ip.num_addresses -2}{end}')
+    print(f'The Network address class is {start}{my_class}{end}')
+    print(f'The First IP assignable for a host is {start}{ip.network_address +1}{end} and in binary format it is {start}{bin(int(ip.network_address +1))}{end} and in hexadecimal {start}{hex(int(ip.network_address +1))}{end}') 
+    print(f'The last IP assignable to a host is {start}{ip.broadcast_address -1}{end} and in binary it is {start}{bin(int(ip.broadcast_address -1))}{end} and in hexadecimal {start}{hex(int(ip.broadcast_address -1))}{end}')
+    print(f'The network address is {start}{ip.network_address}{end} and in binary format it is {start}{bin(int(ip.broadcast_address -1))}{end} and in hexadecimal{start}{hex(int(ip.network_address))}{end}')
+    print(f'The Broadcast address is {start}{ip.broadcast_address}{end} and in binary format it is {start}{bin(int(ip.broadcast_address))}{end} and in hexadecimal {start}{hex(int(ip.broadcast_address))}{end}') 
     
     
     #Print reverse zone file
@@ -79,14 +82,6 @@ def ip_calc(my_ipaddress):
     print("	)")
     for i in range(1,ip.num_addresses -1):
         print(f'{i} IN    PTR  host{i}.{host}')
-# def wildcard_conversion(subnet):
-#     subnet = (ip.with_netmask).split('/')[1]
-#     wildcard = []
-#     for x in subnet.split('.'):
-#         component = 255 - int(x)
-#         wildcard.append(str(component))
-#     wildcard = '.'.join(wildcard)
-#     return wildcard
 
 ip_calc(my_ipaddress = str(input("Please enter the IP Address and Subnet(x.x.x.x/x): ")))
 
